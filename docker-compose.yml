@@ -5,38 +5,30 @@ services:
     build:
       context: .
       dockerfile: provider/Dockerfile
-    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
     container_name: master_db
     restart: always
     volumes:
       - 'master_db:/var/lib/postgresql/data/master_db/'
-      - ./postgresql.conf:/etc/postgresql/postgresql.conf
-      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
     ports:
       - "127.0.0.1:5432:5432"
     environment:
       - 'POSTGRES_USER=postgres'
       - 'POSTGRES_PASSWORD=postgres'
       - 'POSTGRES_DB=master_db'
-      - 'POSTGRES_DATA=/var/lib/postgresql/data/master_db/'
   slave_db:
     build:
       context: .
       dockerfile: subscriber/Dockerfile
-    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
     container_name: slave_db
     restart: always
     volumes:
       - 'slave_db:/var/lib/postgresql/data/slave_db/'
-      - ./postgresql.conf:/etc/postgresql/postgresql.conf
-      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
     ports:
       - "127.0.0.1:5433:5432"
     environment:
       - 'POSTGRES_USER=postgres'
       - 'POSTGRES_PASSWORD=postgres'
       - 'POSTGRES_DB=slave_db'
-      - 'POSTGRES_DATA=/var/lib/postgresql/data/slave_db/'
 volumes:
   master_db:
   slave_db:
