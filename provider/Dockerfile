@@ -1,8 +1,13 @@
-FROM reedws/pglogical
+FROM postgres:13
 
 VOLUME ["master_db:/var/lib/postgresql/data/master_db/"]
 
 ENV PGDATA=/var/lib/postgresql/data/master_db/
+
+# Install necessary dependencies
+RUN apt-get update && apt-get install -y \
+    postgresql-13-pglogical \
+    postgresql-13-pglogical-ticker
 
 # Copy Postgres config file into container
 COPY postgresql.conf /etc/postgresql

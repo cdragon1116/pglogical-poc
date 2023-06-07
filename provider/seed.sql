@@ -11,4 +11,3 @@ INSERT INTO users (email, name) VALUES('test1@gmail.com','Jenny');
 INSERT INTO users (email, name) VALUES('test2@gmail.com','Andy');
 INSERT INTO users (email, name) VALUES('test3@gmail.com','John');
 INSERT INTO users (email, name) VALUES('test4@gmail.com','John');
-

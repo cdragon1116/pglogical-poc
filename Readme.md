@@ -1,10 +1,12 @@
 # pglogical POC
 
+uses PostgresSQL 13 with pglogical 2.3.3.
+
 ## Setup
 
-- start up
+- start containers
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
 - seed database
